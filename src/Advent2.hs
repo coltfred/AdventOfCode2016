@@ -6,14 +6,13 @@ data Dir = U | D | L | R deriving (Eq, Show)
 --(X,Y) - Right is positive, Down is Positive
 newtype Loc = Loc { unLoc :: (Int,Int) } deriving (Eq, Show)
 
---drop 1 because the seed value isn't part of the solution.
 solution1 :: [[Dir]] -> [String]
 solution1 =  solution loc2Digit (Loc (1,1))
 
---drop 1 because the seed value isn't part of the solution.
 solution2 :: [[Dir]] -> [String]
 solution2 =  solution loc2Digit2 (Loc (0,2))
 
+--drop 1 because the seed value isn't part of the solution.
 solution :: (Loc -> Maybe String) -> Loc -> [[Dir]] -> [String]
 solution loc2MaybeDigit start = concatMap (maybeToList . loc2MaybeDigit) . drop 1 . scanl (getLineSolution loc2MaybeDigit) start
 

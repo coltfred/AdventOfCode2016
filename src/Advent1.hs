@@ -15,7 +15,7 @@ solution2 = total  <$> ((findFirstDuplicate . map snd . produceAllStepsForTurns)
 
 findFirstDuplicate :: Ord a => [a] -> Maybe a
 findFirstDuplicate xs = go xs Set.empty
-    where go [] _          = Nothing
+    where go [] _            = Nothing
           go (x:xs) s
             | Set.member x s = Just x
             | otherwise      = go xs (Set.insert x s)
